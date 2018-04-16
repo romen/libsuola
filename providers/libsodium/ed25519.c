@@ -1,0 +1,53 @@
+/*
+ *  libsuola - An engine gluing together OpenSSL and NaCl-derived crypto.
+ *  Copyright (C) 2018 TTY Foundation sr
+ *
+ *  This file is part of libsuola.
+ *
+ *  libsuola is free software: you can redistribute it and/or modify it under
+ *  the terms of the GNU Lesser General Public License as published by the
+ *  Free Software Foundation, either version 3 of the License, or (at your
+ *  option) any later version.
+ *
+ *  libsuola is distributed in the hope that it will be useful, but WITHOUT
+ *  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ *  FITNESS FOR A PARTICULAR PURPOSE.
+ *  See the GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+#include "providers/api/ed25519.h"
+#include <sodium.h>
+#include "debug/debug.h"
+
+int suola_sign_ed25519_seed_keypair(unsigned char *pk, unsigned char *sk,
+                                    const unsigned char *seed)
+{
+    return crypto_sign_ed25519_seed_keypair(pk, sk, seed);
+}
+
+int suola_sign_ed25519_detached(unsigned char *sig,
+                                unsigned long long *siglen_p,
+                                const unsigned char *m,
+                                unsigned long long mlen,
+                                const unsigned char *sk,
+                                const unsigned char *pk)
+{
+    return crypto_sign_ed25519_detached(sig, siglen_p, m, mlen, sk);
+}
+
+
+int suola_sign_ed25519_verify_detached(const unsigned char *sig,
+                                       const unsigned char *m,
+                                       unsigned long long mlen,
+                                       const unsigned char *pk)
+{
+    return crypto_sign_ed25519_verify_detached(sig, m, mlen, pk);
+}
+
+/* vim: set ts=4 sw=4 tw=78 et : */
+
+
