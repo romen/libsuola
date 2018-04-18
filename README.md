@@ -8,7 +8,7 @@ The project currently supports three alternative back-end providers:
 -   [HACL\*](https://github.com/mitls/hacl-star)
 -   [donna](https://github.com/floodyberry/ed25519-donna.git)
 
-More details are available in [this paper](#).
+More details are available in [this paper](https://eprint.iacr.org/2018/354.pdf).
 
 <!-- toc -->
 
