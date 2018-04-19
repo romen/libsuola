@@ -82,6 +82,9 @@ The source code of the project is organized hierarchically.
 
 ## Installation
 
+If your system already has OpenSSL, [libsodium](https://github.com/jedisct1/libsodium), etc. those corresponding source installation steps are optional for you.
+Package versions from your OS provide are also likely to work, e.g. `sudo apt-get install libsodium-dev`.
+
 ### OpenSSL
 
 ```
@@ -124,7 +127,7 @@ sudo ldconfig
 ### libsuola
 
 ```
-git clone git@bitbucket.org:romen/engine_25519.git --branch suola libsuola
+git clone https://github.com/romen/libsuola
 cd libsuola
 mkdir build
 cd build
@@ -164,7 +167,7 @@ sudo dpkg -r openssl-master-debug
 
 ### Examine a key
 
-`openssl pkey -engine libsuola -in key.pem -text`
+`openssl pkey -engine libsuola -in priv.pem -text`
 
 ### Sign data
 
