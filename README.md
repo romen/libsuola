@@ -14,12 +14,14 @@ More details are available in [this paper](https://eprint.iacr.org/2018/354.pdf)
 
 - [Project structure](#project-structure)
 - [Installation](#installation)
-  * [OpenSSL](#openssl)
-  * [Back-end provider](#back-end-provider)
-    + [libsodium](#libsodium)
-    + [HACL](#hacl)
+  * [Binary distributions of OpenSSL and libsodium](#binary-distributions-of-openssl-and-libsodium)
+  * [Installing prerequisites from source](#installing-prerequisites-from-source)
+    + [OpenSSL](#openssl)
+    + [Back-end provider](#back-end-provider)
+      - [libsodium](#libsodium)
+      - [HACL](#hacl)
   * [libsuola](#libsuola)
-- [Uninstall](#uninstall)
+  * [Uninstall](#uninstall)
 - [Usage](#usage)
   * [List algorithms](#list-algorithms)
   * [Generate private key](#generate-private-key)
@@ -101,7 +103,7 @@ Other flavours of UNIX will use a different package manager (replacing
 `apt-get install` with something similar) and use slightly different
 package names.
 
-#### Binary distributions of OpenSSL and libsodium
+### Binary distributions of OpenSSL and libsodium
 
 If you have already installed OpenSSL,
 [libsodium](https://github.com/jedisct1/libsodium), etc., the
@@ -125,7 +127,9 @@ Other flavours of UNIX will use a different package manager (replacing
 `apt-get install` with something similar) and use slightly different
 package names.
 
-### OpenSSL
+### Installing prerequisites from source
+
+#### OpenSSL
 
 ```
 git clone https://github.com/openssl/openssl.git openssl-master
@@ -138,9 +142,9 @@ sudo checkinstall --strip=no --stripso=no --pkgname=openssl-master-debug --provi
 alias openssl=$OPENSSL_ROOT_DIR/bin/openssl
 ```
 
-### Back-end provider
+#### Back-end provider
 
-#### libsodium
+##### libsodium
 
 ```
 git clone https://github.com/jedisct1/libsodium --branch stable
@@ -152,7 +156,7 @@ make check
 sudo checkinstall --strip=no --stripso=no --pkgname=libsodium-debug --provides=libsodium-debug --default
 ```
 
-#### HACL
+##### HACL
 
 ```
 git clone https://github.com/mitls/hacl-star
@@ -181,13 +185,13 @@ make test
 sudo checkinstall --strip=no --stripso=no --pkgname=libsuola-debug --provides=libsuola-debug --default
 ```
 
-## Uninstall
+### Uninstall
 
 ```
 sudo dpkg -r libsuola-debug
-sudo dpkg -r libhacl-debug
-sudo dpkg -r libsodium-debug
-sudo dpkg -r openssl-master-debug
+sudo dpkg -r libhacl-debug        # if installed from source
+sudo dpkg -r libsodium-debug      # if installed from source
+sudo dpkg -r openssl-master-debug # if installed from source
 ```
 
 ## Usage
