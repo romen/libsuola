@@ -85,6 +85,7 @@ ELSEIF(USE_DONNA)
 
     file(GLOB LIBSUOLA_PROVIDER "providers/donna/*.c" "providers/ossl/rng.c" "providers/_dummy/base.c")
 ELSE()
+    list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
     find_package(sodium REQUIRED)
     SET(sodium_LIBRARIES ${sodium_LIBRARY_DEBUG})
     message("sodium include dir: ${sodium_INCLUDE_DIR}")

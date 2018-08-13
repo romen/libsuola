@@ -14,12 +14,14 @@ More details are available in [this paper](https://eprint.iacr.org/2018/354.pdf)
 
 - [Project structure](#project-structure)
 - [Installation](#installation)
-  * [OpenSSL](#openssl)
-  * [Back-end provider](#back-end-provider)
-    + [libsodium](#libsodium)
-    + [HACL](#hacl)
+  * [Binary distributions of OpenSSL and libsodium](#binary-distributions-of-openssl-and-libsodium)
+  * [Installing prerequisites from source](#installing-prerequisites-from-source)
+    + [OpenSSL](#openssl)
+    + [Back-end provider](#back-end-provider)
+      - [libsodium](#libsodium)
+      - [HACL](#hacl)
   * [libsuola](#libsuola)
-- [Uninstall](#uninstall)
+  * [Uninstall](#uninstall)
 - [Usage](#usage)
   * [List algorithms](#list-algorithms)
   * [Generate private key](#generate-private-key)
@@ -44,6 +46,7 @@ The source code of the project is organized hierarchically.
 
 ```
 .
+├── cmake
 ├── debug
 ├── meths
 ├── ossl
@@ -78,14 +81,55 @@ The source code of the project is organized hierarchically.
     OpenSSL `RAND` module rather then the backend PRNG);
 - `tests` contains code used to automate testing of the `ENGINE`;
 - `debug` contains definitions used to implement the debug messaging
-  system.
+  system;
+- `cmake` contains helpers for the build system.
 
 ## Installation
 
-If your system already has OpenSSL, [libsodium](https://github.com/jedisct1/libsodium), etc. those corresponding source installation steps are optional for you.
-Package versions from your OS provide are also likely to work, e.g. `sudo apt-get install libsodium-dev`.
+To build `libsuola` from source you will need:
+- `git` to clone the latest source version from this repository and
+  other dependencies you plan to build from source;
+- `cmake`, `pkg-config`, `make`, `gcc`/`clang` and the required
+  development headers specific for your system, to ensure a working
+  build system.
 
-### OpenSSL
+In Debian-like distributions the following should suffice:
+
+```
+apt-get install git pkg-config cmake build-essential
+```
+
+Other flavours of UNIX will use a different package manager (replacing
+`apt-get install` with something similar) and use slightly different
+package names.
+
+### Binary distributions of OpenSSL and libsodium
+
+If you have already installed OpenSSL,
+[libsodium](https://github.com/jedisct1/libsodium), etc., the
+corresponding installation steps are optional for you.
+
+
+To use OpenSSL or libsodium as provided by your Linux distribution, you
+need to make sure the development headers are also installed.
+
+In Debian/Ubuntu this means to install the corresponding `*-dev`
+packages:
+
+```
+apt-get install libssl-dev libsodium-dev
+```
+
+**Note**: the above step is not required if installing OpenSSL or
+libsodium from source.
+
+Other flavours of UNIX will use a different package manager (replacing
+`apt-get install` with something similar) and use slightly different
+package names.
+
+### Installing prerequisites from source
+
+#### OpenSSL
 
 ```
 git clone https://github.com/openssl/openssl.git openssl-master
@@ -98,8 +142,9 @@ sudo checkinstall --strip=no --stripso=no --pkgname=openssl-master-debug --provi
 alias openssl=$OPENSSL_ROOT_DIR/bin/openssl
 ```
 
-### Back-end provider
-#### libsodium
+#### Back-end provider
+
+##### libsodium
 
 ```
 git clone https://github.com/jedisct1/libsodium --branch stable
@@ -109,11 +154,9 @@ LIBSODIUM_PREFIX=/usr/local
 make
 make check
 sudo checkinstall --strip=no --stripso=no --pkgname=libsodium-debug --provides=libsodium-debug --default
-mkdir -p ~/.cmake/Modules
-cp contrib/Findsodium.cmake ~/.cmake/Modules/
 ```
 
-#### HACL
+##### HACL
 
 ```
 git clone https://github.com/mitls/hacl-star
@@ -142,13 +185,13 @@ make test
 sudo checkinstall --strip=no --stripso=no --pkgname=libsuola-debug --provides=libsuola-debug --default
 ```
 
-## Uninstall
+### Uninstall
 
 ```
 sudo dpkg -r libsuola-debug
-sudo dpkg -r libhacl-debug
-sudo dpkg -r libsodium-debug
-sudo dpkg -r openssl-master-debug
+sudo dpkg -r libhacl-debug        # if installed from source
+sudo dpkg -r libsodium-debug      # if installed from source
+sudo dpkg -r openssl-master-debug # if installed from source
 ```
 
 ## Usage
