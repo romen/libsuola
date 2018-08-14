@@ -291,16 +291,19 @@ static int suola_register_ameth(int id, EVP_PKEY_ASN1_METHOD **ameth, int flags)
         return 0;
 
     if (id == NID_X25519) {
-        pem_str = OBJ_nid2sn(id);
-        info = "EC DH X25519 through libsodium";
+        ;
     } else if (id == NID_ED25519) {
-        pem_str = OBJ_nid2sn(id);
-        info = "Ed25519 through libsodium";
+        if (!OBJ_add_sigid(NID_ED25519, NID_undef, NID_ED25519)) {
+            errorf("OBJ_add_sigid() failed\n");
+            return 0;
+        }
     } else {
         /* Unsupported method */
         return 0;
     }
 
+    pem_str = OBJ_nid2sn(id);
+    info = OBJ_nid2ln(id);
     return suola_register_asn1_meth(id, ameth, pem_str, info);
 }
 

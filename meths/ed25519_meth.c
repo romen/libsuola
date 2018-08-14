@@ -101,7 +101,7 @@ static int ed25519_ctrl(EVP_PKEY_CTX *ctx, int type, int p1, void *p2)
                     EVP_MD_type((const EVP_MD *)p2));
 
             md_nid = EVP_MD_nid(p2);
-            if ( md_nid == NID_identity_md || md_nid == NID_sha512 ) {
+            if (md_nid == NID_identity_md) {
                 return 1;
             }
             errorf("%s: unsupported message digest '%s'\n", type_str, OBJ_nid2ln(md_nid));

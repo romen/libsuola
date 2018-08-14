@@ -28,10 +28,10 @@
 
 #define suola_OID_X25519   "1.3.101.110"
 #define suola_SN_X25519    "X25519"
-#define suola_LN_X25519    "EC DH X25519 through libsodium"
+#define suola_LN_X25519    "X25519"
 
 #define suola_OID_ED25519  "1.3.101.112"
 #define suola_SN_ED25519   "ED25519"
-#define suola_LN_ED25519   "Ed25519 through libsodium"
+#define suola_LN_ED25519   "ED25519"
 
 #endif /* SUOLA_OBJECTS_INTERNAL_H */

@@ -476,7 +476,7 @@ static int suola_ed25519_item_sign(EVP_MD_CTX *ctx, const ASN1_ITEM *it, void *a
  * suola_register_asn1_meth(  NID_ED25519,
  *                            &ameth,
  *                            "ED25519",
- *                            "Ed25519 through libsodium");
+ *                            "ED25519");
  *
  * ameth is guaranteed to be non-NULL and unsupported nid are already filtered
  * out.
