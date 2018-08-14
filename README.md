@@ -154,6 +154,7 @@ LIBSODIUM_PREFIX=/usr/local
 make
 make check
 sudo checkinstall --strip=no --stripso=no --pkgname=libsodium-debug --provides=libsodium-debug --default
+export PKG_CONFIG_PATH="$LIBSODIUM_PREFIX/lib/pkgconfig:$PKG_CONFIG_PATH"
 ```
 
 ##### HACL

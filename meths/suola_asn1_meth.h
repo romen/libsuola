@@ -29,7 +29,7 @@
  * suola_register_asn1_meth(  NID_ED25519,
  *                            &ameth,
  *                            "ED25519",
- *                            "Ed25519 through libsodium");
+ *                            "ED25519");
  */
 int suola_register_asn1_meth(int nid, EVP_PKEY_ASN1_METHOD **ameth, const char *pem_str, const char *info);
 
