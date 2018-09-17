@@ -1,0 +1,11 @@
+Source: libsuola
+Maintainer: Iaroslav Gridin <voker57@gmail.com>
+Section: misc
+Priority: optional
+Standards-Version: 4.0.0
+Build-Depends: debhelper (>= 11), cmake (>= 2.8), libssl-dev (>= 1.1), libsodium-dev (>= 1.0.16), pkg-config (>= 0.29)
+
+Package: libsuola
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: An ENGINE gluing together OpenSSL and NaCl-derived crypto.

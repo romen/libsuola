@@ -1,0 +1,24 @@
+Use crypto lib path to derive installation path.
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -101,6 +101,8 @@
+ 
+ set_target_properties(suola PROPERTIES COMPILE_FLAGS "-Werror=implicit-function-declaration -Wno-discarded-qualifiers")
+ 
++get_filename_component(OPENSSL_CRYPTO_LIB_PATH ${OPENSSL_CRYPTO_LIBRARY} DIRECTORY)
++
+ if(${OPENSSL_VERSION} VERSION_LESS 1.1.0)
+     #set_target_properties(suola PROPERTIES COMPILE_FLAGS "-Werror=implicit-function-declaration -Wno-incompatible-pointer-types -Wno-discarded-qualifiers")
+     set_target_properties(suola PROPERTIES COMPILE_FLAGS "-Werror=implicit-function-declaration -Wno-discarded-qualifiers")
+@@ -108,9 +110,9 @@
+     target_compile_definitions(suola PRIVATE OPENSSL_V102_COMPAT)
+ 
+     set_target_properties(suola PROPERTIES PREFIX "liblib")
+-    install(TARGETS suola DESTINATION ${OPENSSL_ROOT_DIR}/lib/engines)
++    install(TARGETS suola DESTINATION ${OPENSSL_CRYPTO_LIB_PATH}/engines)
+ else()
+-    install(TARGETS suola DESTINATION ${OPENSSL_ROOT_DIR}/lib/engines-1.1)
++    install(TARGETS suola DESTINATION ${OPENSSL_CRYPTO_LIB_PATH}/engines-1.1)
+ endif(${OPENSSL_VERSION} VERSION_LESS 1.1.0)
+ 
+ target_compile_definitions(suola PRIVATE _DEBUG)
