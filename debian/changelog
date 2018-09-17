@@ -1,3 +1,9 @@
+libsuola (0.0-5) bionic; urgency=medium
+
+  * Moved patch and debian/ to main repo, git-buildpackage accomodation
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Mon, 17 Sep 2018 16:30:24 +0300
+
 libsuola (0.0-4) bionic; urgency=medium
 
   * Added pkg-config to build-dep
