@@ -7,5 +7,5 @@ Build-Depends: debhelper (>= 11), cmake (>= 2.8), libssl-dev (>= 1.1), libsodium
 
 Package: libsuola
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: libssl (>= 1.0.9), libsodium23 (>= 1.0.16)
 Description: An ENGINE gluing together OpenSSL and NaCl-derived crypto.
