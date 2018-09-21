@@ -183,6 +183,8 @@ make test
 #ctest --output-on-failure
 #ctest --verbose
 sudo checkinstall --strip=no --stripso=no --pkgname=libsuola-debug --provides=libsuola-debug --default
+# or build a proper package with git-buildpackage
+gbp buildpackage --git-upstream-tree=SLOPPY --git-debian-branch=master -ibuild\|.git --git-ignore-new --no-sign
 ```
 
 ### Uninstall
