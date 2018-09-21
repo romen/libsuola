@@ -187,4 +187,7 @@ set_property(TEST gnupg_evp_tests APPEND PROPERTY ENVIRONMENT
     "OPENSSL_ENGINES=${CMAKE_BINARY_DIR}")
 set_tests_properties(gnupg_evp_tests PROPERTIES PASS_REGULAR_EXPRESSION
     " 0 errors, 0 skipped")
+    
+add_custom_target(integration-test COMMAND make WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test/sharness)
+add_dependencies(integration-test suola)
 

@@ -180,7 +180,8 @@ cd build
 # -DHACL_PREFIX=<path> allows to specify the installation prefix for HACL, by default /usr/local
 cmake -DCMAKE_BUILD_TYPE=Debug -DOPENSSL_ROOT_DIR=${OPENSSL_ROOT_DIR} -DUSE_HACL=ON ..
 make
-make test
+make test # unit tests
+make integration-test # integration tests
 #ctest --output-on-failure
 #ctest --verbose
 sudo checkinstall --strip=no --stripso=no --pkgname=libsuola-debug --provides=libsuola-debug --default
