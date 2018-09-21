@@ -101,3 +101,4 @@ before_script:
   - ./test/travis/build_libsuola.sh
 script:
   - ./test/travis/test_libsuola_unit.sh
+  - ./test/travis/test_libsuola_integration.sh
