@@ -1,0 +1,12 @@
+openssl_conf = openssl_init
+
+[openssl_init]
+engines = engine_section
+ 
+[engine_section]
+libsuola = libsuola_section
+
+[libsuola_section]
+dynamic_path = $ENV::LIBSUOLA_PATH
+default_algorithms = ALL
+init = 1
