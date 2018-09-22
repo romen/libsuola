@@ -1,0 +1,42 @@
+libsuola (0.0-8) bionic; urgency=medium
+
+  * Added fixed dependencies
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Wed, 19 Sep 2018 10:07:37 +0300
+
+libsuola (0.0-7) bionic; urgency=medium
+
+  * Changed build type to RelWithDebInfo 
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Tue, 18 Sep 2018 14:05:19 +0300
+
+libsuola (0.0-5) bionic; urgency=medium
+
+  * Moved patch and debian/ to main repo, git-buildpackage accomodation
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Mon, 17 Sep 2018 16:30:24 +0300
+
+libsuola (0.0-4) bionic; urgency=medium
+
+  * Added pkg-config to build-dep
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Mon, 17 Sep 2018 13:11:17 +0300
+
+libsuola (0.0-3) bionic; urgency=medium
+
+  * Added devlibs to build-dep
+  * Set proper standards version
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Mon, 17 Sep 2018 12:22:04 +0300
+
+libsuola (0.0-1.2) bionic; urgency=medium
+
+  * Added CMake build-dep
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Mon, 17 Sep 2018 12:03:40 +0300
+
+libsuola (0.0-1.1) bionic; urgency=medium
+
+  * Initial release.
+
+ -- Iaroslav Gridin <voker57@gmail.com>  Mon, 17 Sep 2018 10:50:59 +0300
