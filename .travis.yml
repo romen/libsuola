@@ -1,0 +1,21 @@
+language: c
+cache:
+  directories:
+    - "$HOME/cache"
+compiler:
+  - gcc
+sudo: false
+script: ./test/travis/script.sh
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  irc: "irc://chat.freenode.net/#libsuola"
+  use_notice: true
+env:
+  - OPENSSL_VERSION=OpenSSL_1_1_1-stable
+  - OPENSSL_VERSION=OpenSSL_1_0_2-stable
+addons:
+  apt:
+    packages:
+      - cmake
