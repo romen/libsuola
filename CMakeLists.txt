@@ -121,16 +121,16 @@ target_compile_definitions(suola PRIVATE DEBUG_BASE64_SGNVRF)
 
 target_link_libraries(suola "-Wl,-z,defs") # Throw an error in case of undefined symbols during libsuola linking
 
-SET(test_apps_SRC "tests/apps.c" "tests/ossl_compat.c")
+SET(test_apps_SRC "test/unit/apps.c" "test/unit/ossl_compat.c")
 
-add_executable(evp_pkey tests/evp_pkey.c ${test_apps_SRC})
+add_executable(evp_pkey test/unit/evp_pkey.c ${test_apps_SRC})
 target_link_libraries(evp_pkey suola)
 if(${OPENSSL_VERSION} VERSION_LESS 1.1.0)
     target_compile_definitions(evp_pkey PRIVATE OPENSSL_V102_COMPAT)
 endif(${OPENSSL_VERSION} VERSION_LESS 1.1.0)
 set_target_properties(evp_pkey PROPERTIES COMPILE_FLAGS "-Werror=implicit-function-declaration")
 
-add_executable(evp_test tests/evp_test.c "tests/ossl_compat.c" "ossl/ossl_compat.c")
+add_executable(evp_test test/unit/evp_test.c "test/unit/ossl_compat.c" "ossl/ossl_compat.c")
 set_target_properties(evp_test PROPERTIES COMPILE_DEFINITIONS "CUSTOM_OPENSSL_INIT;OPENSSL_NO_POLY1305;OPENSSL_NO_SIPHASH")
 target_link_libraries(evp_test ${OPENSSL_LIBRARIES})
 if(${OPENSSL_VERSION} VERSION_LESS 1.1.0)
@@ -162,27 +162,27 @@ MCowBQYDK2VwAyEA7Bcrk61eVjv0kyxw4SRQNMNUZ\\+8u/U1k6/gZaDRn4r8=
 
 
 add_test(NAME rfc7748_x25519_evp_tests
-    COMMAND evp_test ${CMAKE_SOURCE_DIR}/tests/rfc7748.txt )
+    COMMAND evp_test ${CMAKE_SOURCE_DIR}/test/unit/rfc7748.txt )
 set_tests_properties(rfc7748_x25519_evp_tests PROPERTIES ENVIRONMENT
-    "OPENSSL_CONF=${CMAKE_SOURCE_DIR}/tests/libsuola.cnf")
+    "OPENSSL_CONF=${CMAKE_SOURCE_DIR}/test/unit/libsuola.cnf")
 set_property(TEST rfc7748_x25519_evp_tests APPEND PROPERTY ENVIRONMENT
     "OPENSSL_ENGINES=${CMAKE_BINARY_DIR}")
 set_tests_properties(rfc7748_x25519_evp_tests PROPERTIES PASS_REGULAR_EXPRESSION
     " 0 errors, 0 skipped")
 
 add_test(NAME evp_tests
-    COMMAND evp_test ${CMAKE_SOURCE_DIR}/tests/libsuola_tests.txt )
+    COMMAND evp_test ${CMAKE_SOURCE_DIR}/test/unit/libsuola_tests.txt )
 set_tests_properties(evp_tests PROPERTIES ENVIRONMENT
-    "OPENSSL_CONF=${CMAKE_SOURCE_DIR}/tests/libsuola.cnf")
+    "OPENSSL_CONF=${CMAKE_SOURCE_DIR}/test/unit/libsuola.cnf")
 set_property(TEST evp_tests APPEND PROPERTY ENVIRONMENT
     "OPENSSL_ENGINES=${CMAKE_BINARY_DIR}")
 set_tests_properties(evp_tests PROPERTIES PASS_REGULAR_EXPRESSION
     " 0 errors, 0 skipped")
 
 add_test(NAME gnupg_evp_tests
-    COMMAND evp_test ${CMAKE_SOURCE_DIR}/tests/gnugpg_t-ed25519.txt )
+    COMMAND evp_test ${CMAKE_SOURCE_DIR}/test/unit/gnugpg_t-ed25519.txt )
 set_tests_properties(gnupg_evp_tests PROPERTIES ENVIRONMENT
-    "OPENSSL_CONF=${CMAKE_SOURCE_DIR}/tests/libsuola.cnf")
+    "OPENSSL_CONF=${CMAKE_SOURCE_DIR}/test/unit/libsuola.cnf")
 set_property(TEST gnupg_evp_tests APPEND PROPERTY ENVIRONMENT
     "OPENSSL_ENGINES=${CMAKE_BINARY_DIR}")
 set_tests_properties(gnupg_evp_tests PROPERTIES PASS_REGULAR_EXPRESSION

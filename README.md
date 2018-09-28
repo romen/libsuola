@@ -57,7 +57,7 @@ The source code of the project is organized hierarchically.
 │   ├── hacl
 │   ├── libsodium
 │   └── ossl
-├── tests
+├── test
 └── suola.c
 ```
 
@@ -79,7 +79,7 @@ The source code of the project is organized hierarchically.
     implemented reusing OpenSSL methods rather than a backend
     implementation (e.g.\ implement `suola_randombytes_buf()` using
     OpenSSL `RAND` module rather then the backend PRNG);
-- `tests` contains code used to automate testing of the `ENGINE`;
+- `test` contains code used to automate testing of the `ENGINE`;
 - `debug` contains definitions used to implement the debug messaging
   system;
 - `cmake` contains helpers for the build system.
