@@ -32,7 +32,7 @@
     #define NO_PBE_TESTS
     #define NO_ENCODE_TESTS
 
-    #include "../ossl/ossl_compat.h"
+    #include "../../ossl/ossl_compat.h"
 #endif /* OPENSSL_V102_COMPAT */
 
 #define VERBOSE 0
