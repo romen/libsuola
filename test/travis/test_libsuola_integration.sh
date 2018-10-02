@@ -4,4 +4,4 @@ export LD_LIBRARY_PATH="$HOME/cache/openssl/$OPENSSL_VERSION/lib:$HOME/cache/lib
 export PATH="$HOME/cache/openssl/$OPENSSL_VERSION/bin:$PATH"
 
 cd "$TRAVIS_BUILD_DIR/build"
-make integration-test
+TEST_VERBOSE=1 make integration-test
