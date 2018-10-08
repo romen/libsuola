@@ -13,10 +13,11 @@ notifications:
   irc: "irc://chat.freenode.net/#libsuola"
   use_notice: true
 env:
-  - OPENSSL_VERSION=OpenSSL_1_1_1
-  - OPENSSL_VERSION=OpenSSL_1_0_2p
+  - "OPENSSL_VERSION=1.0.2 DEBIAN_PACKAGES='http://ftp.fi.debian.org/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu13.6_amd64.deb http://ftp.fi.debian.org/ubuntu/pool/main/o/openssl/openssl_1.0.2g-1ubuntu13.6_amd64.deb http://ftp.fi.debian.org/ubuntu/pool/main/o/openssl/libssl-dev_1.0.2g-1ubuntu13.6_amd64.deb'"
+  - "OPENSSL_VERSION=1.1.0 DEBIAN_PACKAGES='http://ftp.fi.debian.org/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4.1_amd64.deb http://ftp.fi.debian.org/ubuntu/pool/main/o/openssl/openssl_1.1.0g-2ubuntu4.1_amd64.deb http://ftp.fi.debian.org/ubuntu/pool/main/o/openssl/libssl-dev_1.1.0g-2ubuntu4.1_amd64.deb'"
   - OPENSSL_VERSION=master
 addons:
   apt:
     packages:
       - cmake
+      - xz-utils
