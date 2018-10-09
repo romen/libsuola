@@ -15,6 +15,7 @@ notifications:
 env:
   - OPENSSL_VERSION=OpenSSL_1_1_1
   - OPENSSL_VERSION=OpenSSL_1_0_2p
+  - OPENSSL_VERSION=master
 addons:
   apt:
     packages:
