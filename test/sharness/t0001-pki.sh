@@ -18,6 +18,7 @@ export sn=8
 
 
 set -e
+set -o pipefail
 mkdir "$cadir"
 cd "$cadir"
 mkdir certs crl csr newcerts private
