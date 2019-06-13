@@ -1,21 +1,103 @@
+---
+dist: xenial
 language: c
-cache:
-  directories:
-    - "$HOME/cache"
-compiler:
-  - gcc
-sudo: false
-script: ./test/travis/script.sh
-notifications:
-  email:
-    on_success: never
-    on_failure: never
-  irc: "irc://chat.freenode.net/#libsuola"
-  use_notice: true
-env:
-  - OPENSSL_VERSION=OpenSSL_1_1_1-stable
-  - OPENSSL_VERSION=OpenSSL_1_0_2-stable
+
 addons:
   apt:
     packages:
       - cmake
+
+cache:
+  directories:
+    - "$HOME/cache"
+
+compiler:
+  - gcc
+
+env:
+  - OPENSSL_VERSION=OpenSSL_1_0_2-stable LIBSODIUM_VERSION="stable"
+  - OPENSSL_VERSION=OpenSSL_1_1_0-stable LIBSODIUM_VERSION="stable"
+  - OPENSSL_VERSION=OpenSSL_1_1_1-stable LIBSODIUM_VERSION="stable"
+
+matrix:
+  include:
+    - env: OPENSSL_VERSION="native" LIBSODIUM_VERSION="native"
+      addons:
+        apt:
+          packages:
+            - openssl
+            - libssl-dev
+            - libsodium-dev
+    - env: >
+        DRELEASE_NAME="bionic"
+        DEPS_PACKAGES="openssl libssl1.1 libssl-dev"
+        OPENSSL_VERSION="packages"
+        LIBSODIUM_VERSION="native"
+      addons:
+        apt:
+          packages:
+            - curl
+            - tree
+            - libsodium-dev
+      before_install:
+        - source ./test/travis/env_for_deps_packages.sh
+    - env: >
+        DRELEASE_NAME="bionic"
+        DEPS_PACKAGES="openssl1.0 libssl1.0.0 libssl1.0-dev"
+        OPENSSL_VERSION="packages"
+        LIBSODIUM_VERSION="native"
+      addons:
+        apt:
+          packages:
+            - curl
+            - tree
+            - libsodium-dev
+      before_install:
+        - source ./test/travis/env_for_deps_packages.sh
+    - env: >
+        DRELEASE_NAME="xenial"
+        DEPS_PACKAGES="openssl libssl1.0.0 libssl-dev"
+        OPENSSL_VERSION="packages"
+        LIBSODIUM_VERSION="native"
+      addons:
+        apt:
+          packages:
+            - curl
+            - tree
+            - libsodium-dev
+      before_install:
+        - source ./test/travis/env_for_deps_packages.sh
+
+  allow_failures:
+    - env: OPENSSL_VERSION="native" LIBSODIUM_VERSION="native"
+    - env: >
+        DRELEASE_NAME="bionic"
+        DEPS_PACKAGES="openssl1.0 libssl1.0.0 libssl1.0-dev"
+        OPENSSL_VERSION="packages"
+        LIBSODIUM_VERSION="native"
+    - env: >
+        DRELEASE_NAME="xenial"
+        DEPS_PACKAGES="openssl libssl1.0.0 libssl-dev"
+        OPENSSL_VERSION="packages"
+        LIBSODIUM_VERSION="native"
+
+# before_install:
+install:
+  - case "$OPENSSL_VERSION" in
+        native) true ;;
+        packages) export OSSL_ROOT="${DPACKAGES_PREFIX}"; ;;
+        *)
+          export OSSL_ROOT="$HOME/cache/openssl/$OPENSSL_VERSION"; ;;
+    esac
+  - case "$LIBSODIUM_VERSION" in
+        native) true ;;
+        packages) export LIBSODIUM_ROOT="${DPACKAGES_PREFIX}"; ;;
+        *)
+          export LIBSODIUM_ROOT="$HOME/cache/libsodium/$LIBSODIUM_VERSION"; ;;
+    esac
+  - env
+  - ./test/travis/install_deps.sh
+before_script:
+  - ./test/travis/build_libsuola.sh
+script:
+  - ./test/travis/test_libsuola_unit.sh
