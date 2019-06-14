@@ -1,4 +1,4 @@
-# libsuola OpenSSL Engine
+# libsuola OpenSSL Engine [![Build Status](https://travis-ci.com/romen/libsuola.svg?branch=master)](https://travis-ci.com/romen/libsuola)
 
 This project aims at developing an OpenSSL engine rigging cryptosystem implementations derived from [NaCl](https://nacl.cr.yp.to/) into OpenSSL.
 
