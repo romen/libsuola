@@ -33,6 +33,11 @@ function install_openssl() {
             return 0
             ;;
         *)
+            if [ ! -z "${SKIP_BUILD_DEPS}" ]; then
+                echo "SKIPPING DEPENDENCIES BUILD" >&2
+                return 0
+            fi
+
             install_openssl_from_git $VERSION
             ;;
     esac
@@ -68,6 +73,11 @@ function install_libsodium() {
             return 0
             ;;
         *)
+            if [ ! -z "${SKIP_BUILD_DEPS}" ]; then
+                echo "SKIPPING DEPENDENCIES BUILD" >&2
+                return 0
+            fi
+
             install_libsodium_from_git $VERSION
             ;;
     esac

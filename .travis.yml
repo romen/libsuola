@@ -36,11 +36,10 @@ matrix:
       addons:
         apt:
           packages:
+            - cmake
             - curl
-            - tree
             - libsodium-dev
-      before_install:
-        - source ./test/travis/env_for_deps_packages.sh
+            - tree
     - env: >
         DRELEASE_NAME="bionic"
         DEPS_PACKAGES="openssl1.0 libssl1.0.0 libssl1.0-dev"
@@ -49,11 +48,10 @@ matrix:
       addons:
         apt:
           packages:
+            - cmake
             - curl
-            - tree
             - libsodium-dev
-      before_install:
-        - source ./test/travis/env_for_deps_packages.sh
+            - tree
     - env: >
         DRELEASE_NAME="xenial"
         DEPS_PACKAGES="openssl libssl1.0.0 libssl-dev"
@@ -62,11 +60,10 @@ matrix:
       addons:
         apt:
           packages:
+            - cmake
             - curl
-            - tree
             - libsodium-dev
-      before_install:
-        - source ./test/travis/env_for_deps_packages.sh
+            - tree
 
   allow_failures:
     - env: OPENSSL_VERSION="native" LIBSODIUM_VERSION="native"
@@ -81,7 +78,10 @@ matrix:
         OPENSSL_VERSION="packages"
         LIBSODIUM_VERSION="native"
 
-# before_install:
+before_install:
+  - source ./test/travis/conditional_builds.sh
+  - source ./test/travis/env_for_deps_packages.sh
+
 install:
   - case "$OPENSSL_VERSION" in
         native) true ;;

@@ -2,6 +2,12 @@
 
 set -e
 set -v
+
+if [ ! -z "${SKIP_BUILD}" ]; then
+    echo "SKIPPING BUILD STAGE" >&2
+    exit 0
+fi
+
 cd "$TRAVIS_BUILD_DIR"
 mkdir build
 cd build

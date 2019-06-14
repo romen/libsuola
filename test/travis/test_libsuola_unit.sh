@@ -3,6 +3,11 @@
 set -e
 set -v
 
+if [ ! -z "${SKIP_TESTS}" ]; then
+    echo "SKIPPING TESTS" >&2
+    exit 0
+fi
+
 if [ "$LIBSODIUM_VERSION" != "native" ]; then
     export LD_LIBRARY_PATH="${LIBSODIUM_ROOT}/lib:${LD_LIBRARY_PATH}"
 fi
