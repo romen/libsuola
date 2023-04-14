@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+title: "libsuola"
+authors:
+- family-names: "Tuveri"
+  given-names: "Nicola"
+  orcid: "https://orcid.org/0000-0001-5172-4568"
+- family-names: "Brumley"
+  given-names: "Billy Bob"
+  orcid: "https://orcid.org/0000-0001-9160-0463"
+- family-names: "Gridin"
+  given-names: "Iaroslav"
+  orcid: "https://orcid.org/0000-0002-1239-1841"
+repository-code: 'https://github.com/romen/libsuola'
+url: 'https://github.com/romen/libsuola'
+abstract: >-
+  This project aims at developing an OpenSSL Engine rigging
+  cryptosystem implementations derived from NaCl into
+  OpenSSL.
+keywords:
+  - OpenSSL
+  - Engine
+  - NaCl
+  - applied cryptography
+license: LGPL-3.0
+
+preferred-citation:
+  type: "conference-paper"
+  title: "Start Your ENGINEs: Dynamically Loadable Contemporary Crypto"
+  authors:
+  - family-names: "Tuveri"
+    given-names: "Nicola"
+    orcid: "https://orcid.org/0000-0001-5172-4568"
+  - family-names: "Brumley"
+    given-names: "Billy Bob"
+    orcid: "https://orcid.org/0000-0001-9160-0463"
+  conference:
+    name: "2019 IEEE Cybersecurity Development"
+    alias: "IEEE SecDev 2019"
+    city: "Tysons Corner, VA"
+    country: "US"
+    date-start: "2019-09-23"
+    date-end: "2019-09-25"
+  publisher:
+    name: "Institute of Electrical and Electronics Engineers"
+    alias: "IEEE"
+  month: 9
+  start: 4 # First page number
+  end: 19 # Last page number
+  issue: 1
+  volume: 1
+  year: 2019
+  doi: "10.1109/SecDev.2019.00014"
+  url: "https://ia.cr/2018/354"
